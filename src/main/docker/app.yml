@@ -1,0 +1,15 @@
+version: '2'
+services:
+    agendei-app:
+        image: agendei
+        external_links:
+            - agendei-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/agendei?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    agendei-mysql:
+        extends:
+            file: mysql.yml
+            service: agendei-mysql
